@@ -1,0 +1,37 @@
+<div class="container mt-4 mb-3 animate__animated animate__fadeIn">
+    <div class="row">
+        <div class="col-12 col-sm-6">
+            <img [src]="pokemon.foto" class="img-thumbnail">
+        </div>
+        <div class="col-12 col-sm-6">
+            <h1 class="mt-2">{{pokemon.nombre | titlecase}}</h1>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Descripción: </strong> {{pokemon.descripcion}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Tipo: </strong> {{pokemon.tipo}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Altura: </strong> {{pokemon.altura | number}} m
+                </li>
+                <li class="list-group-item">
+                    <strong>Peso: </strong> {{pokemon.peso | number}} kg
+                </li>
+            </ul>
+            <h3 class="mt-3">Evoluciones</h3>
+
+            <div *ngIf="pokemon.evolucion.length !== 0; else noEvolucion">
+                <span *ngFor="let evolucion of pokemon.evolucion" class="badge inline-block bg-primary p-2">
+                    {{evolucion | titlecase}}
+                </span>
+            </div>
+            <ng-template #noEvolucion>
+                <p *ngIf="pokemon.evolucion.length === 0">
+                    Este pokemon no tiene evoluciones.
+                </p>
+            </ng-template>
+            <button class="btn btn-outline-primary btn-lg mt-2" routerLink="['/pokemon']" type="button">Home</button>
+        </div>
+    </div>
+</div>
